@@ -6,7 +6,9 @@ const Users = require('../users/userHelpers')
 
 const secrets = require('../secrets/secrets')
 
-router.get('/', async (req, res) => {
+const gate = require('./middleware')
+
+router.get('/', gate, async (req, res) => {
     return res.status(200).json({ message: "auth router is up" })
 })
 
