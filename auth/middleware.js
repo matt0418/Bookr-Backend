@@ -4,7 +4,7 @@ const secrets = require('../secrets/secrets')
 //Middleware for authentication to allow for access to routes
 module.exports = (req, res, next) => {
     //looking for token in authorization header in the request
-    const token = req.get('jwt')
+    const token = req.get('Authorization')
     if (token) {
         jwt.verify(token, secrets.jwtSecret, (err, decodedToken) => {
             if(err) {
