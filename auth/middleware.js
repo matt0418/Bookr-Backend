@@ -1,11 +1,10 @@
 //Importing required dependencies
 const jwt = require('jsonwebtoken')
 const secrets = require('../secrets/secrets')
-
 //Middleware for authentication to allow for access to routes
 module.exports = (req, res, next) => {
     //looking for token in authorization header in the request
-    const token = req.headers.authorization
+    const token = req.get('jwt')
     if (token) {
         jwt.verify(token, secrets.jwtSecret, (err, decodedToken) => {
             if(err) {
