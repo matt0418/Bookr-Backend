@@ -4,6 +4,21 @@
 
 `https://bookr-matt.herokuapp.com`
 
+## Project Initialization
+
+Fork and clone the repo, and he run `yarn install` to install the required dependencies. After that run `yarn server`
+to get the server running on localhost:5000
+
+## Tech Stack
+
+- NodeJs
+- SQLite
+- BcryptJS
+- JSONWebToken
+- Knex
+- CORS
+- ExpressJs
+
 ## Authorization Routes
 
 POST to `/api/auth/register`
@@ -23,53 +38,40 @@ GET to `/api/books`
 - outputs an array of books
 
 GET to `/api/books/:id`
+
 - expects token for authorization
 - outputs a book object with the specified ID
 - object includes keys (title, author, publisher, description, image, and price)
 
-GET to `/api/users/:id/provider`
+POST to `/api/books`
 
 - expects token for authorization
-- outputs the specific user with the id as well as an experiences key with the value of an array of experiences that they are providing
-
-GET to `/api/users/:id/experiences`
-
-- expects token for authorization
+- title, author, and publisher are required in the req.body
+- adds the book to the database
 - outputs the title and description of the experiences the user is signed up for
 
-PUT to `/api/users/:id`
-- expects token for authorization
-- outputs user with updated info
-
-
-## Experience Routes
-
-GET to `/api/experiences`
+PUT to `/api/books/:id`
 
 - expects token for authorization
-- outputs an array of all the experiences available, with all their data
+- outputs book with updated information
 
-GET to `/api/experiences/:id`
-
-- expects token for authorization
-- outputs an experience object for the specific experience
-
-GET to `/api/experiences/:id/users`
+DELETE to `/api/books/:id`
 
 - expects token for authorization
-- outputs the users who are signed up for that experience
-- ...also outputs the title and description of the experience for clarification purposes
+- deleted the book at the specified ID 
 
-POST to `/api/experiences`
+
+## Comments Routes
+
+GET to `/api/comments`
 
 - expects token for authorization
-- requires title, description, category, street, region, city,  postCode, and provider_id in the req.body
-- adds the experience to the array of experiences
+- outputs an array of all of the comment available, with all their data
 
-PUT to `/api/experiences/:id`
-- expects token for authorization
-- updates the experience at the id
+POST to `/api/comments`
 
-DELETE to `/api/experiences/:id`
 - expects token for authorization
-- deletes the experience at the id point
+- book_id, user_id, comment, and rating are expected in the req.body
+- adds the comment to the database
+
+
