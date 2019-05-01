@@ -31,7 +31,8 @@ router.get('/:id', gate, async (req, res) => {
     }
 })
 
-router.post('/', gate, async (req, res) => {
+
+router.post('/', async (req, res) => {
     const { title, author, publisher, rating, description, image, price } = req.body
     if (!title || !author || !publisher || !description || !price) {
         return res.status(400).json({ message: "Please fill in all fields" })
@@ -44,6 +45,7 @@ router.post('/', gate, async (req, res) => {
         return res.status(500).json(error)
     }
 })
+
 
 router.put('/:id', gate, async (req, res) => {
     const id = req.params.id
