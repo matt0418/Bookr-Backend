@@ -4,7 +4,7 @@ const gate = require('../auth/middleware')
 const db = require('../data/dbConfig')
 const bcrypt = require('bcryptjs')
 
-router.get('/', gate, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const books = await Books.findAll()
         return res.status(200).json(books)
